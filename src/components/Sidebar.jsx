@@ -198,6 +198,8 @@ export default function Sidebar() {
           flexGrow: 1,
           bgcolor: "background.default",
           p: 3,
+          paddingLeft: 2,
+          paddingTop: 10,
         }}
       >
         <Outlet />
