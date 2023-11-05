@@ -23,7 +23,7 @@ import {
   ListItemText,
 } from "@mui/material";
 
-import { sidebarData } from "./SidebarData";
+import { SidebarData } from "./SidebarData";
 import { Link, Outlet } from "react-router-dom";
 
 const drawerWidth = 220;
@@ -175,8 +175,8 @@ export default function Sidebar() {
         <Toolbar />
         <Divider />
         <List>
-          {sidebarData &&
-            sidebarData.map((text, index) => (
+          {SidebarData &&
+            SidebarData.map((text, index) => (
               <Link
                 key={index}
                 to={text.path}
