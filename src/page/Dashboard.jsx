@@ -1,9 +1,10 @@
-import BarChart from "../components/BarChart";
+// import BarChart from "../components/BarChart";
+import BarChartD from "../components/BarChartD";
 
 const Dashboard = () => {
   return (
     <div>
-      <BarChart />
+      <BarChartD />
     </div>
   );
 };
