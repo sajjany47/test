@@ -1,10 +1,12 @@
 // import BarChart from "../components/BarChart";
-import BarChartD from "../components/BarChartD";
+// import { CombineBar } from "../components/CombineBar";
+
+import { LineChart } from "../components/Linechart";
 
 const Dashboard = () => {
   return (
     <div>
-      <BarChartD />
+      <LineChart />
     </div>
   );
 };

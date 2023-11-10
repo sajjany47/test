@@ -92,7 +92,8 @@ const data = [
     groupD: 10,
   },
 ];
-function BarChart() {
+
+export const CombineBar = () => {
   // bounds = area inside the graph axis = calculated by substracting the margins
 
   const axesRef = useRef(null);
@@ -186,6 +187,4 @@ function BarChart() {
       </svg>
     </div>
   );
-}
-
-export default BarChart;
+};
