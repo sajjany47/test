@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import { LineChart } from "../components/Linechart";
 import BarChart from "../components/Barchart";
 import { CombineBar } from "../components/CombineBar";
-import { FormControl, MenuItem, Select } from "@mui/material";
+import { Button, FormControl, MenuItem, Select } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -16,16 +16,65 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  height: 1,
+  overflow: "hidden",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  whiteSpace: "nowrap",
+  width: 1,
+});
+
 const Dashboard = () => {
+  let data = {
+    jan: [
+      { x: 1, y: 10 },
+      { x: 2, y: 12 },
+      { x: 3, y: 24 },
+      { x: 4, y: 23 },
+      { x: 5, y: 32 },
+      { x: 6, y: 29 },
+    ],
+    feb: [
+      { x: 1, y: 50 },
+      { x: 2, y: 82 },
+      { x: 3, y: 64 },
+      { x: 4, y: 23 },
+      { x: 5, y: 42 },
+      { x: 6, y: 89 },
+    ],
+    mar: [
+      { x: 1, y: 60 },
+      { x: 2, y: 112 },
+      { x: 3, y: 224 },
+      { x: 4, y: 213 },
+      { x: 5, y: 302 },
+      { x: 6, y: 290 },
+    ],
+    apr: [
+      { x: 1, y: 110 },
+      { x: 2, y: 212 },
+      { x: 3, y: 124 },
+      { x: 4, y: 223 },
+      { x: 5, y: 332 },
+      { x: 6, y: 229 },
+    ],
+    may: [
+      { x: 1, y: 70 },
+      { x: 2, y: 52 },
+      { x: 3, y: 84 },
+      { x: 4, y: 63 },
+      { x: 5, y: 62 },
+      { x: 6, y: 99 },
+    ],
+  };
   const [manage, setManage] = React.useState("manage");
-  const LinechartData = [
-    { x: 1, y: 10 },
-    { x: 2, y: 12 },
-    { x: 3, y: 24 },
-    { x: 4, y: 23 },
-    { x: 5, y: 32 },
-    { x: 6, y: 29 },
-  ];
+  const [monthwiseData, setMonthwiseData] = React.useState("jan");
+  const [manageData, setManageData] = React.useState(data.jan);
+
   const barchartData = [
     {
       x: "Jan",
@@ -98,31 +147,99 @@ const Dashboard = () => {
   const handleChange = (event) => {
     setManage(event.target.value);
   };
+
+  const handleMonthChange = (event) => {
+    setMonthwiseData(event.target.value);
+    let eventData = event.target.value;
+    let findData =
+      eventData === "jan"
+        ? data.jan
+        : eventData === "feb"
+        ? data.feb
+        : eventData === "mar"
+        ? data.mar
+        : eventData === "apr"
+        ? data.apr
+        : eventData === "may"
+        ? data.may
+        : [];
+    setManageData(findData);
+  };
+
   return (
     <Box sx={{ width: "100%" }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item xs={6}>
           <Item>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <strong>Checking Account</strong>
+              <strong style={{ marginTop: 20, minWidth: 120 }}>
+                Checking Account
+              </strong>
+
               <Box>
-                <FormControl fullWidth>
-                  <Select value={manage} label="Manage" onChange={handleChange}>
+                <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                  <Select
+                    value={manage}
+                    onChange={handleChange}
+                    displayEmpty
+                    inputProps={{ "aria-label": "Without label" }}
+                  >
                     <MenuItem value={"manage"}>Mange</MenuItem>
+                  </Select>
+                </FormControl>
+                <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                  <Select
+                    value={monthwiseData}
+                    onChange={handleMonthChange}
+                    displayEmpty
+                    inputProps={{ "aria-label": "Without label" }}
+                  >
+                    <MenuItem value={"jan"}>January</MenuItem>
+                    <MenuItem value={"feb"}>February</MenuItem>
+                    <MenuItem value={"mar"}>March</MenuItem>
+                    <MenuItem value={"apr"}>April</MenuItem>
+                    <MenuItem value={"may"}>May</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
             </Box>
             <hr />
-            <LineChart height={300} width={500} data={LinechartData} />
+            <LineChart
+              height={300}
+              width={500}
+              data={manageData && manageData}
+            />
           </Item>
         </Grid>
         <Grid item xs={6}>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <strong style={{ marginTop: 20, minWidth: 120 }}>
+              Invoice own to you
+            </strong>
+
+            <Box sx={{ marginTop: "10px" }}>
+              <Button
+                component="label"
+                sx={{ backgroundColor: "whitesmoke", color: "green" }}
+              >
+                New Sales Invoice
+                <VisuallyHiddenInput type="file" />
+              </Button>
+            </Box>
+          </Box>
+          <hr style={{ marginTop: "20px" }} />
           <Item>
             <BarChart height={300} width={500} data={barchartData} />
           </Item>
         </Grid>
         <Grid item xs={6}>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <strong style={{ marginTop: 20, minWidth: 120 }}>
+              Total Cash Flow
+            </strong>
+            <Box></Box>
+          </Box>
+          <hr style={{ margin: "20px" }} />
           <Item>
             <CombineBar height={300} width={500} data={combineBardata} />
           </Item>

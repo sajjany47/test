@@ -20,7 +20,6 @@ function BarChart(props) {
   const stackSeries = d3.stack().keys(allSubgroups).order(d3.stackOrderNone);
   //.offset(d3.stackOffsetNone);
   const series = stackSeries(data);
-  console.log(series);
 
   // Y axis
   const max = 200; // todo
