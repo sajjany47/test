@@ -1,25 +1,14 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import { useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
 
 const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
 
-const width = 700;
-const height = 400;
-
-const data = [
-  { x: 1, y: 90 },
-  { x: 2, y: 12 },
-  { x: 3, y: 34 },
-  { x: 4, y: 53 },
-  { x: 5, y: 52 },
-  { x: 6, y: 9 },
-  { x: 7, y: 18 },
-  { x: 8, y: 78 },
-  { x: 9, y: 28 },
-  { x: 10, y: 34 },
-];
-
-export const LineChart = () => {
+export const LineChart = (props) => {
+  const width = props && props.width;
+  const height = props && props.height;
+  const data = props && props.data;
   // bounds = area inside the graph axis = calculated by substracting the margins
   const axesRef = useRef(null);
   const boundsWidth = width - MARGIN.right - MARGIN.left;
@@ -80,9 +69,9 @@ export const LineChart = () => {
           <path
             d={linePath}
             opacity={1}
-            stroke="#9a6fb0"
+            stroke="green"
             fill="none"
-            strokeWidth={2}
+            strokeWidth={1}
           />
         </g>
         <g
