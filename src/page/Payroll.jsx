@@ -1,6 +1,6 @@
 import Dashboard from "./Dashboard";
 
-const Contact = () => {
+const Payroll = () => {
   return (
     <div>
       <Dashboard />
@@ -8,4 +8,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Payroll;

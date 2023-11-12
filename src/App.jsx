@@ -3,6 +3,10 @@ import "./App.css";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./page/Dashboard";
 import Contact from "./page/Contact";
+import Payroll from "./page/Payroll";
+import Account from "./page/Account";
+import Report from "./page/Report";
+import Advisor from "./page/Advisor";
 
 function App() {
   return (
@@ -11,6 +15,10 @@ function App() {
         <Route path="/" element={<Sidebar />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/payroll" element={<Payroll />} />
+          <Route path="/advisor" element={<Advisor />} />
+          <Route path="/report" element={<Report />} />
+          <Route path="/account" element={<Account />} />
         </Route>
       </Routes>
 

@@ -14,7 +14,6 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import {
   Avatar,
   CssBaseline,
-  Divider,
   Drawer,
   List,
   ListItem,
@@ -111,14 +110,19 @@ export default function Sidebar() {
       <CssBaseline />
       <AppBar
         position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        sx={{
+          width: `calc(100% - ${drawerWidth}px)`,
+          ml: `${drawerWidth}px`,
+          backgroundColor: "whitesmoke",
+          boxShadow: "none",
+        }}
       >
         <Toolbar>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Search>
+            <Search sx={{ backgroundColor: "white" }}>
               <SearchIconWrapper>
-                <SearchIcon />
+                <SearchIcon style={{ color: "black" }} />
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Search…"
@@ -131,7 +135,7 @@ export default function Sidebar() {
               color="inherit"
             >
               <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
+                <NotificationsIcon sx={{ color: "black" }} />
               </Badge>
             </IconButton>
             <IconButton
@@ -173,7 +177,7 @@ export default function Sidebar() {
         anchor="left"
       >
         <Toolbar />
-        <Divider />
+
         <List>
           {SidebarData &&
             SidebarData.map((text, index) => (
@@ -182,7 +186,14 @@ export default function Sidebar() {
                 to={text.path}
                 style={{ textDecoration: "none", color: "black" }}
               >
-                <ListItem disablePadding>
+                <ListItem
+                  disablePadding
+                  sx={{
+                    ":hover": {
+                      backgroundColor: "whitesmoke",
+                    },
+                  }}
+                >
                   <ListItemButton>
                     <ListItemIcon>{text.icon}</ListItemIcon>
                     <ListItemText primary={text.name} />
