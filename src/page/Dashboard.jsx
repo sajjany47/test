@@ -7,6 +7,7 @@ import { LineChart } from "../components/Linechart";
 import BarChart from "../components/Barchart";
 import { CombineBar } from "../components/CombineBar";
 import { Button, FormControl, MenuItem, Select } from "@mui/material";
+import TableData from "../components/TableData";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -212,40 +213,49 @@ const Dashboard = () => {
           </Item>
         </Grid>
         <Grid item xs={6}>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <strong style={{ marginTop: 20, minWidth: 120 }}>
-              Invoice own to you
-            </strong>
-
-            <Box sx={{ marginTop: "10px" }}>
-              <Button
-                component="label"
-                sx={{ backgroundColor: "whitesmoke", color: "green" }}
-              >
-                New Sales Invoice
-                <VisuallyHiddenInput type="file" />
-              </Button>
-            </Box>
-          </Box>
-          <hr style={{ marginTop: "20px" }} />
           <Item>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <strong style={{ marginTop: 20, minWidth: 120 }}>
+                Invoice own to you
+              </strong>
+
+              <Box sx={{ marginTop: "10px" }}>
+                <Button
+                  component="label"
+                  sx={{ backgroundColor: "whitesmoke", color: "green" }}
+                >
+                  New Sales Invoice
+                  <VisuallyHiddenInput type="file" />
+                </Button>
+              </Box>
+            </Box>
+            <hr style={{ marginTop: "17px" }} />
             <BarChart height={300} width={500} data={barchartData} />
           </Item>
         </Grid>
         <Grid item xs={6}>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <strong style={{ marginTop: 20, minWidth: 120 }}>
-              Total Cash Flow
-            </strong>
-            <Box></Box>
-          </Box>
-          <hr style={{ margin: "20px" }} />
           <Item>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <strong style={{ marginTop: 20, minWidth: 120 }}>
+                Total Cash Flow
+              </strong>
+              <Box></Box>
+            </Box>
+            <hr />
             <CombineBar height={300} width={500} data={combineBardata} />
           </Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>4</Item>
+          <Item>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <strong style={{ marginTop: 20, minWidth: 120 }}>
+                Account Watchlist
+              </strong>
+              <Box></Box>
+            </Box>
+            <hr />
+            <TableData />
+          </Item>
         </Grid>
       </Grid>
     </Box>
